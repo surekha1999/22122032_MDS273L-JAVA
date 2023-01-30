@@ -40,11 +40,11 @@ public class lab1 {
     if (state.equalsIgnoreCase("Jammu & Kashmir") || 
         state.equalsIgnoreCase("Delhi") ||
         state.equalsIgnoreCase("Himachal Pradesh") ||
-        state.equalsIgnoreCase("Punjab")
-        state.equalsIgnoreCase("Uttarakhand");
-        state.equalsIgnoreCase("Haryana");
-        state.equalsIgnoreCase("Rajasthan");
-        state.equalsIgnoreCase("Uttar Pradesh");) {
+        state.equalsIgnoreCase("Punjab")||
+        state.equalsIgnoreCase("Uttarakhand")||
+        state.equalsIgnoreCase("Haryana")||
+        state.equalsIgnoreCase("Rajasthan")||
+        state.equalsIgnoreCase("Uttar Pradesh")) {
       System.out.print("The Employee is from the northern states of India; Preferable work location is in " + state);
     }
 
