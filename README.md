@@ -1,12 +1,19 @@
 # 22122032_MDS273L-JAVA
-#NAme- Surekha
-#Reg.No- 22122032
-#Email- nemmaluri.surekha@msds.christuniversity.in
-#Class- 1-MscDs-A
+//Name- Surekha
+//Reg.No- 22122032
+//Email- nemmaluri.surekha@msds.christuniversity.in
+//Class- 1-MscDs-A
 
-
-#Write a Java Program that will collect an employee's basic details that fall into different data types and displays them.
-After the details have been displayed, with the help of conditional statements, check if the gender of the employee is 'm' or 'f'. It should print "MALE" for 'm' and "FEMALE" for 'f'.
-Assume that you can divide the states among India into different regions (North, South, Central, East, and West). If the employee is from the southern part of India, with the help of a switch statement, it should display "The Employee is from the southern states of India; Preferable work location is in <state>", along with the basic details.
-Identify if the employee belongs to the top MNC Companies (Facebook, Google, Microsoft, Samsung, IBM, Apple); if so, print a message "The employee is working in Top MNC Companies".
-
+//You are supposed to create a menu-driven program that has the following menu options:
+Enter a name
+Search for a name
+Remove a name
+Show all names
+Note:
+The menu-driven program has to be made with the help of a do-while loop and switch-case statements.
+Constraints:
+The names collected must be stored in an array with a max length of 1024.
+The names in the array should be UNIQUE; no duplicate entries are expected!
+Provide necessary validations that the user enters only valid names that are not going to be repeated.
+Removing a name should not create empty space inside the array!
+Format your results properly!!
