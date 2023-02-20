@@ -54,7 +54,7 @@ public class lab4 {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
-        BankAccount account = new BankAccount();
+        lab4 = new lab4();
 
         System.out.print("Enter account number: ");
         String accountNumber = input.nextLine();
