@@ -1,97 +1,107 @@
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
+import java.text.SimpleDateFormat;
 
-public class BankAccount {
-    private int accountNumber;
-    private String accountHolderName;
-    private double accountBalance;
-    private ArrayList<String> transactions;
+public class lab4 {
+    public int accNumber;
+    public String accHolderName;
+    public double accBalance;
+    public ArrayList<String> transactions;
 
-    public void initializeCustomer(int accountNumber, String accountHolderName, double accountBalance) {
-        this.accountNumber = accountNumber;
-        this.accountHolderName = accountHolderName;
-        this.accountBalance = accountBalance;
-        this.transactions = new ArrayList<>();
+    public void Customerdetail() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter account number: ");
+        accNumber = sc.nextInt();
+
+        System.out.print("Enter account holder name: ");
+        accHolderName = sc.next();
+
+        System.out.print("Enter account balance: ");
+        accBalance = sc.nextDouble();
+
+        transactions = new ArrayList<String>();
+        transactions.add(getTransactionString(accBalance, "Account initialized with balance"));
     }
 
-    public void depositMoney(double amount) {
-        this.accountBalance += amount;
-        String transaction = "Deposit: " + amount + ", New balance: " + this.accountBalance;
-        this.transactions.add(transaction);
+    public void deposit() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter TotalAmount to deposit: ");
+        double TotalAmount = sc.nextDouble();
+
+        accBalance += TotalAmount;
+        transactions.add(getTransactionString(TotalAmount, "Deposit"));
     }
 
-    public void withdrawMoney(double amount) {
-        if (this.accountBalance >= amount) {
-            this.accountBalance -= amount;
-            String transaction = "Withdraw: " + amount + ", New balance: " + this.accountBalance;
-            this.transactions.add(transaction);
-        } else {
-            System.out.println("Insufficient balance");
+    public void withdraw() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter TotalAmount to withdraw: ");
+        double TotalAmount = sc.nextDouble();
+
+        if (TotalAmount > accBalance) {
+            System.out.println("Insufficient balance.");
+            return;
         }
+
+        accBalance -= TotalAmount;
+        transactions.add(getTransactionString(TotalAmount, "Withdrawal"));
     }
 
     public void printTransactions() {
-        System.out.println("Transactions:");
-        for (String transaction : this.transactions) {
+        for (String transaction : transactions) {
             System.out.println(transaction);
         }
     }
 
-    public void printAccountSummary() {
-        System.out.println("Account summary:");
-        System.out.println("Account number: " + this.accountNumber);
-        System.out.println("Account holder name: " + this.accountHolderName);
-        System.out.println("Account balance: " + this.accountBalance);
+    public void Summary(){ 
+        System.out.println("Account number: " + accNumber);
+        System.out.println("Account holder name: " + accHolderName);
+        System.out.println("Account balance: $" + accBalance);
+    }
+
+    private String getTransactionString(double amount, String transactionType) {
+        Date now = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return String.format("%s: $%.2f, New balance: $%.2f (%s)", transactionType, amount, accBalance, dateFormat.format(now));
     }
 
     public static void main(String[] args) {
-        BankAccount account = new BankAccount();
-        Scanner scanner = new Scanner(System.in);
+        lab4 account = new lab4();
+        account.Customerdetail();
 
-        System.out.println("Enter account number:");
-        int accountNumber = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("Enter account holder name:");
-        String accountHolderName = scanner.nextLine();
-        System.out.println("Enter account balance:");
-        double accountBalance = scanner.nextDouble();
-        account.initializeCustomer(accountNumber, accountHolderName, accountBalance);
+        Scanner sc = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Menu:");
-            System.out.println("1. Deposit money");
-            System.out.println("2. Withdraw money");
-            System.out.println("3. Print transactions");
-            System.out.println("4. Print account summary");
-            System.out.println("5. Exit");
-
-            int choice = scanner.nextInt();
+            System.out.println("\nEnter operation:\n1. Deposit\n2. Withdraw\n3. Print transactions\n4. Print account summary\n5. Exit");
+            int choice = sc.nextInt();
 
             switch (choice) {
                 case 1:
-                    System.out.println("Enter amount to deposit:");
-                    double depositAmount = scanner.nextDouble();
-                    account.depositMoney(depositAmount);
+                    account.deposit();
                     break;
+
                 case 2:
-                    System.out.println("Enter amount to withdraw:");
-                    double withdrawAmount = scanner.nextDouble();
-                    account.withdrawMoney(withdrawAmount);
+                    account.withdraw();
                     break;
+
                 case 3:
-                    account.printTransactions();
+                account.printTransactions();
                     break;
+
                 case 4:
-                    account.printAccountSummary();
+                    account.Summary();
                     break;
+
                 case 5:
                     System.exit(0);
-                    break;
+
                 default:
-                    System.out.println("Invalid choice");
-                    break;
+                    System.out.println("Invalid choice.");
             }
         }
     }
