@@ -3,88 +3,82 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class lab4 {
-
-    private String accountNumber;
+public class BankAccount {
+    private int accountNumber;
     private String accountHolderName;
     private double accountBalance;
     private ArrayList<String> transactions;
 
-    // function to initialize the customer
-    public void initializeCustomer(String accountNumber, String accountHolderName, double accountBalance) 
-    {
+    public void initializeCustomer(int accountNumber, String accountHolderName, double accountBalance) {
         this.accountNumber = accountNumber;
         this.accountHolderName = accountHolderName;
         this.accountBalance = accountBalance;
-        this.transactions = new ArrayList<String>();
-        this.transactions.add("Account created with initial balance of " + accountBalance);
+        this.transactions = new ArrayList<>();
     }
 
-    // function to deposit money
-    public void deposit(double amount) {
+    public void depositMoney(double amount) {
         this.accountBalance += amount;
-        this.transactions.add("Deposit of " + amount + " made. Current balance is " + this.accountBalance);
+        String transaction = "Deposit: " + amount + ", New balance: " + this.accountBalance;
+        this.transactions.add(transaction);
     }
 
-    // function to withdraw money
-    public void withdraw(double amount) {
-        if (amount > this.accountBalance) {
-            System.out.println("Insufficient balance.");
-        } else {
+    public void withdrawMoney(double amount) {
+        if (this.accountBalance >= amount) {
             this.accountBalance -= amount;
-            this.transactions.add("Withdrawal of " + amount + " made. Current balance is " + this.accountBalance);
+            String transaction = "Withdraw: " + amount + ", New balance: " + this.accountBalance;
+            this.transactions.add(transaction);
+        } else {
+            System.out.println("Insufficient balance");
         }
     }
 
-    // function to print the transactions
     public void printTransactions() {
-        System.out.println("Transaction history:");
+        System.out.println("Transactions:");
         for (String transaction : this.transactions) {
             System.out.println(transaction);
         }
     }
 
-    // function to print account summary
     public void printAccountSummary() {
-        System.out.println("Account Number: " + this.accountNumber);
-        System.out.println("Account Holder Name: " + this.accountHolderName);
-        System.out.println("Account Balance: " + this.accountBalance);
+        System.out.println("Account summary:");
+        System.out.println("Account number: " + this.accountNumber);
+        System.out.println("Account holder name: " + this.accountHolderName);
+        System.out.println("Account balance: " + this.accountBalance);
     }
 
     public static void main(String[] args) {
+        BankAccount account = new BankAccount();
+        Scanner scanner = new Scanner(System.in);
 
-        Scanner input = new Scanner(System.in);
-        lab4 = new lab4();
-
-        System.out.print("Enter account number: ");
-        String accountNumber = input.nextLine();
-        System.out.print("Enter account holder name: ");
-        String accountHolderName = input.nextLine();
-        System.out.print("Enter account balance: ");
-        double accountBalance = input.nextDouble();
+        System.out.println("Enter account number:");
+        int accountNumber = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Enter account holder name:");
+        String accountHolderName = scanner.nextLine();
+        System.out.println("Enter account balance:");
+        double accountBalance = scanner.nextDouble();
         account.initializeCustomer(accountNumber, accountHolderName, accountBalance);
 
-        int choice;
-        do {
+        while (true) {
             System.out.println("Menu:");
-            System.out.println("1. Deposit Money");
-            System.out.println("2. Withdraw Money");
-            System.out.println("3. Print Transactions");
-            System.out.println("4. Print Account Summary");
+            System.out.println("1. Deposit money");
+            System.out.println("2. Withdraw money");
+            System.out.println("3. Print transactions");
+            System.out.println("4. Print account summary");
             System.out.println("5. Exit");
-            System.out.print("Enter your choice: ");
-            choice = input.nextInt();
-            switch (choice) 
-            {
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
                 case 1:
-                    System.out.print("Enter amount to deposit: ");
-                    double depositAmount = input.nextDouble();
-                    account.deposit(depositAmount);
+                    System.out.println("Enter amount to deposit:");
+                    double depositAmount = scanner.nextDouble();
+                    account.depositMoney(depositAmount);
                     break;
                 case 2:
-                    System.out.print("Enter amount to withdraw: ");
-                    double withdrawAmount = input.nextDouble();
-                    account.withdraw(withdrawAmount);
+                    System.out.println("Enter amount to withdraw:");
+                    double withdrawAmount = scanner.nextDouble();
+                    account.withdrawMoney(withdrawAmount);
                     break;
                 case 3:
                     account.printTransactions();
@@ -93,13 +87,12 @@ public class lab4 {
                     account.printAccountSummary();
                     break;
                 case 5:
-                    System.out.println("Exiting program...");
+                    System.exit(0);
                     break;
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+                    System.out.println("Invalid choice");
                     break;
             }
-        } 
-        while (choice != 5);
+        }
     }
 }
