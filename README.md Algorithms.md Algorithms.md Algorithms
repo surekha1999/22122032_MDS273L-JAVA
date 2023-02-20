@@ -1,0 +1,18 @@
+
+//What is an Algorithm?
+// The word Algorithm means ” A  set of rules to be followed in calculations or other problem-solving operations ” Or ” A procedure for solving a mathematical problem in a finite number of steps that frequently by recursive operations “. 
+
+//Algorithms in JAVA
+
+//static:-
+//At the start of the course, all of our methods included the static modifier, but when we started using objects, use of the static modifier was banned.
+//Methods in Java can be divided into two groups, based on whether they have the static modifier or not. Methods without the static modifier are instance methods. Methods with the static modifier are class methods
+
+
+//Sort :-
+//Selection Sort:- Selection Sort is a simple and slow sorting algorithm that repeatedly selects the lowest or highest element from the unsorted section and moves it to the end of the sorted section.
+//Insertion Sort:- Insertion Sort is a simple and slow sorting algorithm that repeatedly takes the next element from the unsorted section and inserts it into the sorted section at the correct position.
+
+
+//Search:-
+//Linear Search:- Linear Search is one of the most simple search algorithms to find a given element in a list of elements. This algorithm traverses every element in the list sequentially until a matching element is found or till the end of the list.
